@@ -1,19 +1,19 @@
 <template>
   <div class="home">
-    <div v-for="post in posts" :key="post.id">
-      <PostItem :post="post" />
-    </div>
+    <PostList v-if="posts.length > 0" :posts="posts" />
+    <SpinnerIem v-else />
     <TagCloud />
   </div>
 </template>
 
 <script setup lang="ts">
-import PostItem from "../components/PostItem.vue";
 import TagCloud from "@/components/TagCloud.vue";
 import { db } from "../firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { ref } from "vue";
 import { PostType } from "../types/index";
+import PostList from "@/components/PostList.vue";
+import SpinnerIem from "@/components/SpinnerIem.vue";
 
 const collectionRef = collection(db, "posts");
 const posts = ref<PostType[]>([]);

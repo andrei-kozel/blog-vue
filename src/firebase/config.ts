@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-console.log(process.env);
-
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API,
   authDomain: process.env.VUE_APP_FIREBASE_DOMAIN,

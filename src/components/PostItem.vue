@@ -1,8 +1,8 @@
 <template>
-  <div class="blog">
-    <p class="blog-title">{{ props.post.title }}</p>
-    <p class="blog-body">{{ props.post.body }}</p>
-    <div class="blog-tags">
+  <div class="post">
+    <p class="post-title">{{ props.post.title }}</p>
+    <p class="post-body">{{ props.post.body.slice(0, 160) + "..." }}</p>
+    <div class="post-tags">
       <span v-for="tag in props.post.tags" :key="tag">#{{ tag }}</span>
     </div>
   </div>
@@ -18,8 +18,8 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
-.blog {
-  @apply flex flex-col items-start text-left max-w-[800px];
+.post {
+  @apply flex flex-col items-start text-left max-w-[800px] mb-10;
 
   &-title {
     @apply text-2xl font-bold bg-teal-600 px-3 py-1 text-white;
