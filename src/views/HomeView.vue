@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <PostItem />
+    <TagCloud />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+<script setup lang="ts">
+import PostItem from "../components/PostItem.vue";
+import TagCloud from "@/components/TagCloud.vue";
+import { db } from "../firebase/config.js";
+import { collection, getDocs } from "firebase/firestore";
+import { Ref, ref } from "vue";
 
-export default defineComponent({
-  name: "HomeView",
-  components: {
-    HelloWorld,
-  },
+interface Post {
+  id: string;
+  title: string;
+  tags: Array<string>;
+  body: string;
+}
+
+const collectionRef = collection(db, "posts");
+const posts = ref<Post[]>([]);
+
+getDocs(collectionRef).then((snapshot) => {
+  let docs: Array<Post> = [];
+  snapshot.docs.forEach((doc) => {
+    docs.push({ ...doc.data(), id: doc.id });
+  });
+
+  console.log(docs);
 });
 </script>
+
+<style scoped lang="scss">
+.home {
+  @apply flex flex-row items-start place-content-between w-full;
+}
+</style>
