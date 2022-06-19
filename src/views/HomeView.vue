@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <PostItem />
+    <div v-for="post in posts" :key="post.id">
+      <PostItem :post="post" />
+    </div>
     <TagCloud />
   </div>
 </template>
@@ -8,27 +10,24 @@
 <script setup lang="ts">
 import PostItem from "../components/PostItem.vue";
 import TagCloud from "@/components/TagCloud.vue";
-import { db } from "../firebase/config.js";
+import { db } from "../firebase/config";
 import { collection, getDocs } from "firebase/firestore";
-import { Ref, ref } from "vue";
-
-interface Post {
-  id: string;
-  title: string;
-  tags: Array<string>;
-  body: string;
-}
+import { ref } from "vue";
+import { PostType } from "../types/index";
 
 const collectionRef = collection(db, "posts");
-const posts = ref<Post[]>([]);
+const posts = ref<PostType[]>([]);
 
 getDocs(collectionRef).then((snapshot) => {
-  let docs: Array<Post> = [];
+  let docs: Array<PostType> = [];
+
   snapshot.docs.forEach((doc) => {
-    docs.push({ ...doc.data(), id: doc.id });
+    const { title, tags, body } = doc.data();
+    const id = doc.id;
+    docs.push({ id, title, tags, body });
   });
 
-  console.log(docs);
+  posts.value = docs;
 });
 </script>
 

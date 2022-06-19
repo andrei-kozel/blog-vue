@@ -1,28 +1,21 @@
 <template>
   <div class="blog">
-    <p class="blog-title">Welcome to the new blog</p>
-    <p class="blog-body">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni doloremque
-      incidunt impedit sit repudiandae necessitatibus laudantium laboriosam sunt
-      amet quis corporis veniam dolore sint iste facilis porro similique quas
-      tenetur minima nisi neque, quasi nesciunt quibusdam tempore. Unde,
-      assumenda ducimus beatae voluptates fugit quos aspernatur quis iste optio
-      nam facere fugiat animi! Nemo odit soluta odio eveniet ullam nobis dolore
-      unde quisquam laudantium repellat dicta, quasi voluptates adipisci eaque
-      officia libero sit eligendi exercitationem enim ad minima cumque nulla.
-      Quam rerum sunt asperiores eum esse. Eligendi exercitationem id
-      voluptatum, eum natus sequi est in corrupti ipsam at quasi tempore
-      architecto.
-    </p>
+    <p class="blog-title">{{ props.post.title }}</p>
+    <p class="blog-body">{{ props.post.body }}</p>
     <div class="blog-tags">
-      <span>#coding</span>
-      <span>#web</span>
-      <span>#vue</span>
+      <span v-for="tag in props.post.tags" :key="tag">#{{ tag }}</span>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from "vue";
+import { PostType } from "../types/index";
+
+const props = defineProps({
+  post: { type: Object as () => PostType, required: true },
+});
+</script>
 
 <style scoped lang="scss">
 .blog {
