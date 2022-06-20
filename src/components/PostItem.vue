@@ -5,7 +5,9 @@
     </p>
     <p class="post-body">{{ props.post.body.slice(0, 160) + "..." }}</p>
     <div class="post-tags">
-      <span v-for="tag in props.post.tags" :key="tag">#{{ tag }}</span>
+      <span v-for="tag in props.post.tags" :key="tag">
+        <router-link :to="`/tag/${tag}`">#{{ tag }}</router-link>
+      </span>
     </div>
   </div>
 </template>

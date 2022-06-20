@@ -14,7 +14,6 @@ import TagCloud from "@/components/TagCloud.vue";
 import PostList from "@/components/PostList.vue";
 import SpinnerIem from "@/components/SpinnerIem.vue";
 import getPosts from "../composables/getPosts";
-import { useRoute } from "vue-router";
 
 const { posts } = getPosts("posts");
 </script>
