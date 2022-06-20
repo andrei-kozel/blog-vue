@@ -6,8 +6,8 @@
 
 <script setup lang="ts">
 import { PostType } from "@/types";
-import PostItem from "./PostItem.vue";
 import { defineProps } from "vue";
+import PostItem from "./PostItem.vue";
 
 const props = defineProps({
   posts: { type: Object as () => Array<PostType>, required: true },

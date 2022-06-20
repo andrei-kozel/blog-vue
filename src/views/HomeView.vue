@@ -1,8 +1,10 @@
 <template>
-  <div class="home">
-    <PostList v-if="posts.length > 0" :posts="posts" />
+  <div>
+    <div v-if="posts.length" class="home">
+      <PostList :posts="posts" />
+      <TagCloud :posts="posts" />
+    </div>
     <SpinnerIem v-else />
-    <TagCloud />
   </div>
 </template>
 

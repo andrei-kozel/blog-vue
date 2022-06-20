@@ -2,20 +2,22 @@
   <div class="tags">
     <p class="tags-title">Tags:</p>
     <div class="tags-container">
-      <span>#coding</span>
-      <span>#web</span>
-      <span>#vue</span>
-      <span>#news</span>
-      <span>#dota</span>
-      <span>#create</span>
-      <span>#react</span>
-      <span>#webdev</span>
-      <span>#mobile</span>
+      <span v-for="tag in tags" :key="tag">#{{ tag }}</span>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from "vue";
+import useTags from "@/composables/useTags";
+import { PostType } from "@/types";
+
+const props = defineProps({
+  posts: { type: Array as () => PostType[], required: true },
+});
+
+const { tags } = useTags(props.posts as unknown as PostType[]);
+</script>
 
 <style scoped lang="scss">
 .tags {
