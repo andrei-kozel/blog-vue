@@ -1,5 +1,11 @@
-# blog-vue
+![screenshot of the site](./public/screenshot.png)
 
+# Mini Blog Vue Application w/ composition API 
+* lists all blogposts
+* can see details of the post
+* different tags that can filter the blogs (show blogs only with that tag)
+* TODO: everyone can create a new post
+* TODO: everyone can delete any post
 ## Project setup
 ```
 yarn install
@@ -19,6 +25,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
