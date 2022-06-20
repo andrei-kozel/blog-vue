@@ -1,8 +1,12 @@
 <template>
   <div class="tags">
-    <p class="tags-title">Tags:</p>
+    <p class="tags-title">
+      Tags: <router-link to="/" class="tags-title__link">all posts</router-link>
+    </p>
     <div class="tags-container">
-      <span v-for="tag in tags" :key="tag">#{{ tag }}</span>
+      <span v-for="tag in tags" :key="tag">
+        <router-link :to="`/tag/${tag}`">#{{ tag }}</router-link>
+      </span>
     </div>
   </div>
 </template>
@@ -25,6 +29,14 @@ const { tags } = useTags(props.posts as unknown as PostType[]);
 
   &-title {
     @apply text-2xl font-bold mb-2;
+
+    &__link {
+      @apply text-gray-500 hover:text-gray-600 cursor-pointer text-base font-normal underline;
+    }
+
+    a.router-link-active {
+      @apply text-teal-600 text-base;
+    }
   }
 
   &-container {
@@ -34,5 +46,9 @@ const { tags } = useTags(props.posts as unknown as PostType[]);
       @apply mr-2 cursor-pointer text-gray-400 hover:text-gray-500;
     }
   }
+}
+
+.tags a.router-link-active {
+  @apply text-teal-600 font-bold;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="posts.length" class="home">
-      <PostList :posts="posts" />
+      <PostList :posts="postsWithTag" />
       <TagCloud :posts="posts" />
     </div>
 
@@ -15,8 +15,17 @@ import PostList from "@/components/PostList.vue";
 import SpinnerIem from "@/components/SpinnerIem.vue";
 import getPosts from "../composables/getPosts";
 import { useRoute } from "vue-router";
+import { computed } from "@vue/reactivity";
 
 const { posts } = getPosts("posts");
+
+const route = useRoute();
+
+const postsWithTag = computed(() => {
+  return posts.value.filter((post) =>
+    post.tags.includes(route.params.tag as string)
+  );
+});
 </script>
 
 <style scoped lang="scss">
