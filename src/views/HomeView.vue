@@ -8,27 +8,11 @@
 
 <script setup lang="ts">
 import TagCloud from "@/components/TagCloud.vue";
-import { db } from "../firebase/config";
-import { collection, getDocs } from "firebase/firestore";
-import { ref } from "vue";
-import { PostType } from "../types/index";
 import PostList from "@/components/PostList.vue";
 import SpinnerIem from "@/components/SpinnerIem.vue";
+import getPosts from "../composables/getPosts";
 
-const collectionRef = collection(db, "posts");
-const posts = ref<PostType[]>([]);
-
-getDocs(collectionRef).then((snapshot) => {
-  let docs: Array<PostType> = [];
-
-  snapshot.docs.forEach((doc) => {
-    const { title, tags, body } = doc.data();
-    const id = doc.id;
-    docs.push({ id, title, tags, body });
-  });
-
-  posts.value = docs;
-});
+const { posts } = getPosts("posts");
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,8 @@
 <template>
   <div class="post">
-    <p class="post-title">{{ props.post.title }}</p>
+    <p class="post-title">
+      <router-link :to="`/post/${post.id}`">{{ post.title }}</router-link>
+    </p>
     <p class="post-body">{{ props.post.body.slice(0, 160) + "..." }}</p>
     <div class="post-tags">
       <span v-for="tag in props.post.tags" :key="tag">#{{ tag }}</span>
