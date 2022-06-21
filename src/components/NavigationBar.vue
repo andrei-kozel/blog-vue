@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <p class="navbar-title">The Vue Blog</p>
+    <p class="navbar-title" @click="handleLogoClick">The Vue Blog</p>
     <div class="navbar-links">
       <router-link class="navbar-link" :to="{ name: 'Home' }">Home</router-link>
       <router-link class="navbar-link" :to="{ name: 'Create' }"
@@ -10,14 +10,22 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const handleLogoClick = () => {
+  router.push("/");
+};
+</script>
 
 <style scoped lang="scss">
 .navbar {
   @apply flex flex-row place-content-between items-end w-full py-16 text-gray-400;
 
   &-title {
-    @apply text-4xl cursor-default;
+    @apply text-4xl cursor-pointer hover:text-teal-700 transition-all ease-in-out duration-300;
   }
 
   &-link {
