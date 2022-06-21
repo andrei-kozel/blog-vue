@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import CreateBlog from "../views/CreateBlog.vue";
+import CreatePost from "../views/CreatePost.vue";
 import PostView from "../views/PostView.vue";
 import TagView from "@/views/TagView.vue";
 
@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/create-blog",
     name: "Create",
-    component: CreateBlog,
+    component: CreatePost,
   },
   {
     path: "/post/:id",
