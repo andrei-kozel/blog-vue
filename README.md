@@ -4,8 +4,8 @@
 * lists all blogposts
 * can see details of the post
 * different tags that can filter the blogs (show blogs only with that tag)
-* TODO: everyone can create a new post
-* TODO: everyone can delete any post
+* everyone can create a new post
+* everyone can delete any post
 ## Project setup
 ```
 yarn install
